@@ -2,33 +2,105 @@
 <html lang="">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameSquirrel</title>
   </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body{
+      background: #292A2E;
+    }
+
+    button{
+      position: relative;
+      width: 10vh;
+      height: 10vh;
+      background: #545454;
+      color: #E8F5F8;
+      border-radius: 8px;
+      font-size: 36px;
+      margin: 2px 2px;
+      border: none;
+      white-space: nowrap;
+      display: inline-block;
+      font-family: 'Roboto', sans-serif;
+      }
+
+
+    div {
+      background: linear-gradient(91.62deg, #6D7CFF 8.7%, #F36DF6 84.05%);
+      width: 10.5vh;
+      height: 10.5vh;
+      margin: 6px 6px;
+      border-radius: 8px;
+      white-space: nowrap;
+      display: inline-block
+    }
+
+    p{
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+
+      color: #8D8D8D;
+
+    }
+    
+    .a {
+      font-family: Roboto;
+      font-style: italic;
+      font-weight: 200;
+      font-size: 18px;
+      line-height: 21px;
+      color: #8D8D8D;
+    }
+  </style>
   <body>
     <header></header>
     <main>
-      <button id = "button1" onclick="changeValue('button1')">-</button><button id = "button2" onclick="changeValue('button2')">-</button><button id = "button3" onclick="changeValue('button3')">-</button><br>
-      <button id = "button4" onclick="changeValue('button4')">-</button><button id = "button5" onclick="changeValue('button5')">-</button><button id = "button6" onclick="changeValue('button6')">-</button><br>
-      <button id = "button7" onclick="changeValue('button7')">-</button><button id = "button8" onclick="changeValue('button8')">-</button><button id = "button9" onclick="changeValue('button9')">-</button><br>
-      <button onclick = "copyGameLink()">Finish turn</button> 
+      <div><button id = "button1" onclick="changeValue('button1')">-</button></div>
+      <div><button id = "button2" onclick="changeValue('button2')">-</button></div>
+      <div><button id = "button3" onclick="changeValue('button3')">-</button></div> <br>
+
+      <div><button id = "button4" onclick="changeValue('button4')">-</button> </div>
+      <div><button id = "button5" onclick="changeValue('button5')">-</button> </div>
+      <div><button id = "button6" onclick="changeValue('button6')">-</button></div> <br>
+
+      <div><button id = "button7" onclick="changeValue('button7')">-</button> </div>
+      <div><button id = "button8" onclick="changeValue('button8')">-</button></div>
+      <div><button id = "button9" onclick="changeValue('button9')">-</button></div><br> 
       <br>
-      <p id = "gameURL">https://jacob-macleod.github.io/GameSquirrel/?</p>
+
+      <button style = "background: linear-gradient(92.68deg, #6D7CFF 6.77%, #F36DF6 83.08%);
+      box-shadow: -2px 2px 4px rgba(158, 104, 226, 0.2), 2px -2px 4px rgba(158, 104, 226, 0.2), -2px -2px 4px rgba(194, 128, 255, 0.9), 2px 2px 5px rgba(158, 104, 226, 0.9), inset 1px 1px 2px rgba(194, 128, 255, 0.3), inset -1px -1px 2px rgba(158, 104, 226, 0.5);
+      border-radius: 8px; width: 200px; font-family: 'Roboto', sans-serif;" onclick = "copyGameLink()">Finish turn</button> 
+      <br>
+      <p>Game URL:</p>
+      
+      <div style = "height: 24px; background: #545454;border-radius: 8px;"><a href="https://jacob-macleod.github.io/GameSquirrel/?" id = "gameURL">https://jacob-macleod.github.io/GameSquirrel/?</a></div>
     </main>
     <footer></footer>
   </body>
 
   <script>
     var player = ""
+    clicked  = false
 
     function changeValue (id) {
-      console.log(document.getElementById(id).innerHTML == "-")
-      if (document.getElementById(id).innerHTML == "-") {
-        if (player == "X") {
-          document.getElementById(id).innerHTML = "O";
-        } else {
-          document.getElementById(id).innerHTML = "X";
-        }
+      if (clicked == true) return; 
+      if (document.getElementById(id).innerHTML != "-") return;
+
+      if (player == "X") {
+        document.getElementById(id).innerHTML = "O";
+      } else {
+        document.getElementById(id).innerHTML = "X";
       }
+
+      clicked = true
     }
 
   function copyGameLink () {
