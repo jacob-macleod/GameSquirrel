@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>GameSquirrel</title>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <button id = "button1" onclick="changeValue('button1')">-</button><button id = "button2" onclick="changeValue('button2')">-</button><button id = "button3" onclick="changeValue('button3')">-</button><br>
+      <button id = "button4" onclick="changeValue('button4')">-</button><button id = "button5" onclick="changeValue('button5')">-</button><button id = "button6" onclick="changeValue('button6')">-</button><br>
+      <button id = "button7" onclick="changeValue('button7')">-</button><button id = "button8" onclick="changeValue('button8')">-</button><button id = "button9" onclick="changeValue('button9')">-</button><br>
+      <button onclick = "copyGameLink()">Finish turn</button> 
+    </main>
+    <footer></footer>
+  </body>
+  <script>
+    var player = ""
+
+    function changeValue (id) {
+      console.log(document.getElementById(id).innerHTML == "-")
+      if (document.getElementById(id).innerHTML == "-") {
+        if (player == "X") {
+          document.getElementById(id).innerHTML = "O";
+        } else {
+          document.getElementById(id).innerHTML = "X";
+        }
+      }
+    }
+
+  function copyGameLink () {
+    var player1Values = "";
+    var player2Values = "";
+
+    for (i = 1; i<10; i++) {
+      if (document.getElementById("button" + i).innerHTML == "X") {
+          player1Values = player1Values + i;
+      } else if (document.getElementById("button" + i).innerHTML == "O") {
+        player2Values = player2Values + i
+      }
+    }
+    
+    if (player == "X") {
+      navigator.clipboard.writeText("file:///home/jacobm/Development/TextMiniGameApp/index.html?" + player1Values + "P" + player2Values + "PO");
+    } else {
+      navigator.clipboard.writeText("file:///home/jacobm/Development/TextMiniGameApp/index.html?" + player1Values + "P" + player2Values + "PX");
+    }
+    
+    alert("Game link copied, you now need to paste it in messages");
+  }
+
+
+  function renderURL () {
+    //Format (locations in denary)P(Locations in denary). P is the divider between player 1 and 2
+    var url = window.location.href;
+
+    args = url.split("?")[1];
+    player1Locations = args.split("P")[0]
+    player1LocationsArr = player1Locations.split("")
+
+    player2Locations = args.split("P")[1]
+    player2LocationsArr = player2Locations.split("")
+
+    player = args.split("P")[2]
+
+
+    for (i=0; i<player1Locations.length; i++) {
+      document.getElementById("button" + player1LocationsArr[i]).innerHTML = "X";
+    }
+
+    for (i=0; i<player2Locations.length; i++) {
+      document.getElementById("button" + player2LocationsArr[i]).innerHTML = "O";
+    }
+  }
+
+  renderURL();
+  </script>
+</html>
