@@ -11,9 +11,11 @@
       <button id = "button4" onclick="changeValue('button4')">-</button><button id = "button5" onclick="changeValue('button5')">-</button><button id = "button6" onclick="changeValue('button6')">-</button><br>
       <button id = "button7" onclick="changeValue('button7')">-</button><button id = "button8" onclick="changeValue('button8')">-</button><button id = "button9" onclick="changeValue('button9')">-</button><br>
       <button onclick = "copyGameLink()">Finish turn</button> 
+
     </main>
     <footer></footer>
   </body>
+
   <script>
     var player = ""
 
@@ -40,10 +42,20 @@
       }
     }
     
+    const el = document.createElement('textarea');
+
     if (player == "X") {
-      navigator.clipboard.writeText("file:///home/jacobm/Development/TextMiniGameApp/index.html?" + player1Values + "P" + player2Values + "PO");
+      el.value = "https://jacob-macleod.github.io/GameSquirrel/?" + player1Values + "P" + player2Values + "PO";
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el); 
     } else {
-      navigator.clipboard.writeText("file:///home/jacobm/Development/TextMiniGameApp/index.html?" + player1Values + "P" + player2Values + "PX");
+      el.value = "https://jacob-macleod.github.io/GameSquirrel/?" + player1Values + "P" + player2Values + "PO";
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el); 
     }
     
     alert("Game link copied, you now need to paste it in messages");
